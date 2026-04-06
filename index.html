@@ -1,306 +1,444 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Hansdika Nugroho</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hansdika Nugroho | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <style>
-        /* Gaya kustom minimal untuk kartu proyek */
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e3a8a',
+              900: '#0f172a'
+            }
+          },
+          boxShadow: {
+            soft: '0 12px 40px rgba(15, 23, 42, 0.12)',
+            glow: '0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(37,99,235,0.25)'
+          },
+          backgroundImage: {
+            grid: 'radial-gradient(circle at 1px 1px, rgba(148,163,184,0.15) 1px, transparent 0)',
+          }
         }
+      }
+    }
+  </script>
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #020617; }
+    .glass {
+      background: rgba(15, 23, 42, 0.68);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .project-card {
+      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(96,165,250,0.45);
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+    }
+    .gradient-ring {
+      position: relative;
+      isolation: isolate;
+    }
+    .gradient-ring::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(96,165,250,0.75), rgba(168,85,247,0.55), rgba(34,197,94,0.45));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      z-index: -1;
+    }
+  </style>
 </head>
+<body class="font-sans text-slate-200 antialiased selection:bg-blue-500/30 selection:text-white">
 
-<body class="bg-gray-100 font-sans text-gray-800">
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-slate-950"></div>
+    <div class="absolute inset-0 bg-grid bg-[size:28px_28px] opacity-40"></div>
+    <div class="absolute left-[-10%] top-[-5%] h-[28rem] w-[28rem] rounded-full bg-blue-600/20 blur-3xl"></div>
+    <div class="absolute right-[-10%] top-[10%] h-[24rem] w-[24rem] rounded-full bg-fuchsia-600/10 blur-3xl"></div>
+    <div class="absolute bottom-[-10%] left-[20%] h-[20rem] w-[20rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+  </div>
 
-    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex justify-center items-center p-4">
-            <nav>
-                <ul class="flex space-x-6 text-lg">
-                    <li><a href="#about" class="hover:text-yellow-400 transition">Profile</a></li>
-                    <li><a href="#skills" class="hover:text-yellow-400 transition">Skills</a></li>
-                    <li><a href="#projects" class="hover:text-yellow-400 transition">Project</a></li>
-                </ul>
-            </nav>
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <a href="#home" class="text-lg font-semibold tracking-wide text-white">Portofolio</a>
+      <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+        <a href="#about" class="transition hover:text-white">About</a>
+        <a href="#skills" class="transition hover:text-white">Skills</a>
+        <a href="#projects" class="transition hover:text-white">Projects</a>
+        <a href="#contact" class="transition hover:text-white">Contact</a>
+      </nav>
+      <a href="CuriculumVitae_Hansdika.pdf" target="_blank"
+        class="rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-200 transition hover:border-blue-300 hover:bg-blue-500/20 hover:text-white">
+        View CV
+      </a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="relative mx-auto max-w-7xl px-6 pb-16 pt-20 lg:px-8 lg:pb-24 lg:pt-28">
+      <div class="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-200">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            Game Developer & Fullstack Web Programmer
+          </span>
+
+          <h1 class="mt-6 max-w-4xl text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Building immersive games and polished web experiences with a modern engineering mindset.
+          </h1>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+            I am Hansdika Nugroho, a Game Technology student at PENS with a strong focus on gameplay systems,
+            engaging mechanics, and web products that feel clean, functional, and visually sharp.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#projects"
+              class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02] hover:bg-slate-100">
+              Explore Projects
+            </a>
+            <a href="#contact"
+              class="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10">
+              Contact Me
+            </a>
+          </div>
+
+          <div class="mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-bold text-white">8+</p>
+              <p class="mt-1 text-sm text-slate-400">Portfolio Projects</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-bold text-white">Game</p>
+              <p class="mt-1 text-sm text-slate-400">Systems Focus</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-bold text-white">Web</p>
+              <p class="mt-1 text-sm text-slate-400">UI and Fullstack</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-bold text-white">PENS</p>
+              <p class="mt-1 text-sm text-slate-400">Game Technology</p>
+            </div>
+          </div>
         </div>
-    </header>
 
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6 lg:px-4 max-w-6xl flex flex-col lg:flex-row items-center gap-10">
-            <div class="w-full lg:w-1/3 text-center">
-                <img src="pp.JPG" alt="Foto Profil Hansdika Nugroho"
-                    class="rounded-full w-48 h-48 mx-auto mb-6 object-cover border-4 border-blue-900 shadow-xl">
-                <h2 class="text-4xl font-extrabold text-blue-900 mb-2">Hansdika Nugroho</h2>
-                <p class="text-xl text-gray-600 mb-4">Game Developer & Fullstack Web Programmer</p>
+        <div class="gradient-ring rounded-[2rem] glass p-6 shadow-glow">
+          <div class="rounded-[1.5rem] border border-white/10 bg-slate-900/90 p-6">
+            <div class="flex flex-col items-center text-center">
+              <div class="relative">
+                <img src="pp.JPG" alt="Portrait of Hansdika Nugroho"
+                  class="h-48 w-48 rounded-full object-cover ring-4 ring-blue-400/30 sm:h-56 sm:w-56">
+                <span class="absolute -bottom-2 left-1/2 inline-flex -translate-x-1/2 rounded-full border border-emerald-400/30 bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-200">
+                  Open to opportunities
+                </span>
+              </div>
+              <h2 class="mt-8 text-3xl font-bold text-white">Hansdika Nugroho</h2>
+              <p class="mt-2 text-slate-400">Game Developer • Fullstack Web Programmer • UI/UX Enthusiast</p>
 
-                <div class="space-y-4 mt-8">
-                    <h4 class="text-xl font-bold text-gray-800">Contacts</h4>
-                    <div class="flex justify-center space-x-6">
-
-                        <a href="https://github.com/hansdikanugroho" target="_blank"
-                            class="text-gray-700 hover:text-blue-900 transition" title="Github: Takaa666">
-                            <i class="fab fa-github text-4xl"></i>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/hansdika-nugroho-9b42b9306/" target="_blank"
-                            class="text-gray-700 hover:text-blue-900 transition" title="LinkedIn">
-                            <i class="fab fa-linkedin text-4xl"></i>
-                        </a>
-
-                        <a href="mailto:hansdikanugroho.1@gmail.com"
-                            class="text-gray-700 hover:text-blue-900 transition" title="Email">
-                            <i class="fas fa-envelope text-4xl"></i>
-                        </a>
-                        <a href="https://www.instagram.com/hansdkn_"
-                            class="text-gray-700 hover:text-blue-900 transition" title="Instagram">
-                            <i class="fab fa-instagram text-4xl"></i>
-                        </a>
-                    </div>
+              <div class="mt-8 grid w-full gap-3 text-left text-sm text-slate-300">
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                  <span class="text-slate-400">Focus</span>
+                  <span class="font-medium text-white">Gameplay Systems</span>
                 </div>
-            </div>
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                  <span class="text-slate-400">Based in</span>
+                  <span class="font-medium text-white">Surabaya, Indonesia</span>
+                </div>
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                  <span class="text-slate-400">Education</span>
+                  <span class="font-medium text-white">Game Technology</span>
+                </div>
+              </div>
 
-            <div class="w-full lg:w-2/3">
-                <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-yellow-400 inline-block pb-1">
-                    Greetings</h3>
-                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                    Hi let me introduce myself Im Hansdika Nugroho , Im from Electronic Engineering Polytechnic
-                    Institute Surabaya , Majoring on Game Techonolgy
-                </p>
-                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                    My role is a Programmer specializing in Game Development and Fullstack Web Programmer but Sometimes
-                    I Love To Make an UI / UX on Website too
-                </p>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    On Game Development specializing to make Game System and Engaging Mechanics
-                </p>
-                <p> <a href="CuriculumVitae_Hansdika.pdf" target="_blank"
-                    class="text-blue-600 hover:text-blue-800 font-semibold">
-                    <i class="fas fa-file-pdf mr-2"></i> See My CV
-                </a></p>
+              <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <a href="https://github.com/hansdikanugroho" target="_blank" class="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-blue-400/40 hover:text-white" aria-label="GitHub">
+                  <i class="fab fa-github text-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/hansdika-nugroho-9b42b9306/" target="_blank" class="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-blue-400/40 hover:text-white" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin-in text-lg"></i>
+                </a>
+                <a href="mailto:hansdikanugroho.1@gmail.com" class="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-blue-400/40 hover:text-white" aria-label="Email">
+                  <i class="fas fa-envelope text-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/hansdkn_/" target="_blank" class="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-blue-400/40 hover:text-white" aria-label="Instagram">
+                  <i class="fab fa-instagram text-lg"></i>
+                </a>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="skills" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6 lg:px-4 max-w-6xl">
-            <h3 class="text-3xl font-bold text-gray-800 mb-10 text-center border-b-4 border-blue-900 inline-block pb-1">
-                Skills</h3>
-
-            <div class="grid md:grid-cols-3 gap-8">
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold text-blue-900 mb-4 flex items-center"><i
-                            class="fas fa-code mr-3"></i> Programming Language</h4>
-                    <ul class="list-none space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fab fa-cuttlefish mr-2 text-blue-500"></i> C, C#, C++
-                        </li>
-                        <li class="flex items-center"><i class="fab fa-php mr-2 text-indigo-500"></i> PHP </li>
-                        <li class="flex items-center"><i class="fab fa-laravel mr-2 text-orange-500"></i> Laravel </li>
-                        <li class="flex items-center"><i class="fas fa-code mr-2 text-orange-500"></i> CodeIgniter </li>
-                        <li class="flex items-center"><i class="fas fa-microchip mr-2 text-blue-500"></i> Arduino </li>
-                        <li class="flex items-center"><i class="fab fa-python mr-2 text-yellow-600"></i> Python</li>
-                        <li class="flex items-center"><i class="fas fa-database mr-2 text-gray-600"></i> SQL</li>
-                        <li class="flex items-center"><i class="fab fa-html5 mr-2 text-orange-500"></i> HTML</li>
-                        <li class="flex items-center"><i class="fab fa-react mr-2 text-cyan-500"></i> React JS</li>
-                        <li class="flex items-center"><i class="fab fa-bootstrap mr-2 text-purple-500"></i> CSS
-                            Framework: Tailwind, Bootstrap</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold text-blue-900 mb-4 flex items-center"><i
-                            class="fas fa-tools mr-3"></i> Game Engine & Framework</h4>
-                    <ul class="list-none space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fab fa-unity mr-2 text-gray-800"></i> Unity, </li>
-                        <li class="flex items-center"><i class="fab fa-unity mr-2 text-gray-800"></i> Roblox Studio
-                        </li>
-                        <li class="flex items-center"><i class="fab fa-figma mr-2 text-purple-600"></i> Figma</li>
-                        <li class="flex items-center"><i class="fab fa-trello mr-2 text-blue-400"></i> Others Tools :
-                            Notion, Miro, Trello</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h4 class="text-xl font-semibold text-blue-900 mb-4 flex items-center"><i
-                            class="fas fa-brain mr-3"></i> Game Skill Specialization & UI / UX</h4>
-                    <ul class="list-none space-y-3 text-gray-700">
-                        <li class="flex items-center"><i class="fas fa-gamepad mr-2 text-red-500"></i>Making Game System
-                        </li>
-                        <li class="flex items-center"><i class="fas fa-gamepad mr-2 text-red-500"></i>Making Engaging
-                            Mechanics</li>
-                        <li class="flex items-center"><i class="fas fa-code-branch mr-2 text-green-600"></i> Unity
-                            DevOps Version Control, GitHub</li>
-                        <li class="flex items-center"><i class="fas fa-puzzle-piece mr-2 text-orange-500"></i> Visual
-                            Script using Node
-                            Canvas</li>
-                        <li class="flex items-center"><i class="fas fa-magic mr-2 text-purple-500"></i> DotTween</li>
-                        <li class="flex items-center"><i class="fas fa-window-maximize mr-2 text-cyan-700"></i> UI/UX
-                            Design & Implementation</li>
-                    </ul>
-                </div>
-
-            </div>
+    <section id="about" class="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-12">
+      <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="glass rounded-[2rem] p-8 shadow-soft">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">About me</p>
+          <h3 class="mt-3 text-3xl font-bold text-white">I design systems that feel good to play and interfaces that feel easy to use.</h3>
         </div>
+        <div class="glass rounded-[2rem] p-8 shadow-soft">
+          <p class="text-base leading-8 text-slate-300">
+            My main strength is turning ideas into structured experiences, whether that means implementing gameplay logic,
+            building interactive mechanics, or shaping a web interface into something more intuitive and engaging.
+            I enjoy working across both technical execution and presentation, so the final product feels solid in function and in form.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="projects" class="py-16 bg-white">
-        <div class="container mx-auto px-6 lg:px-4 max-w-6xl">
-            <h3
-                class="text-3xl font-bold text-gray-800 mb-10 text-center border-b-4 border-yellow-400 inline-block pb-1">
-                Portfolio</h3>
-
-            <h4 class="text-2xl font-bold text-blue-900 mt-8 mb-6">🎮 Game Development Project </h4>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <a href="mandala.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScMandala/Mandala.png" alt="Screenshot Mandala"
-                        class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Mandala: The Minds Journey</h5>
-                        <p class="text-sm text-gray-500 mb-3">Psychological Horror Game (IGDX Incubation)</p>
-                        <p class="text-gray-700 mb-4">
-                            This i s a game that we are working on to participate in the incubation organized by IGDX
-                            where I am here working with my friends who are called Jasuke Studio
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="nocthread.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScNocthread/menu.png" alt="Screenshot Mandala"
-                        class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Nocthread</h5>
-                        <p class="text-sm text-gray-500 mb-3">3D Horor Fixed Camer (Compfest 2025)</p>
-                        <p class="text-gray-700 mb-4">
-                            When the night in Bali refuses to end, the darkness outside becomes a reflection of the
-                            darkness within.
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="mystic.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScMystic/menu.png" alt="Screenshot Mandala" class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Mystic Brew</h5>
-                        <p class="text-sm text-gray-500 mb-3">Simulation Brewing Potion (Gamejam Plus 2024)</p>
-                        <p class="text-gray-700 mb-4">
-                            In Mystic Brew, players immerse themselves in the enchanting world of potion crafting, where
-                            they take on the role of a potion seller at the entrance of a dungeon. Your mission is to
-                            cater to the needs of adventurous customers by preparing potions based on their specific
-                            requests.
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="rockcat.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScRockcat/main-menu.png" alt="Screenshot Rockcat"
-                        class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Rockcat: Operation Blue Heaven</h5>
-                        <p class="text-sm text-gray-500 mb-3">Game Story Based Side Scroller(Workshop Game Production 2)
-                        </p>
-                        <p class="text-gray-700 mb-4">
-                            A Game Story Based with side scroller view , the game that has mechanics for sorting waste.
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="ispeed.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScIspeed/menu.png" alt="Screenshot Mandala" class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Ishowspeed : Goes To Jogja</h5>
-                        <p class="text-sm text-gray-500 mb-3">2D Platformer (Gamejam Internal GT 2024)</p>
-                        <p class="text-gray-700 mb-4">
-                            A game who i build on Gamejam on GT . in this project I not become a real programmer in here
-                            i just help my junior who make a game
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="tanacat.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScTanacat/menu.png" alt="Screenshot Mandala"
-                        class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Tanacat</h5>
-                        <p class="text-sm text-gray-500 mb-3">2D Platformer (Gamejam Internal GT 2025)</p>
-                        <p class="text-gray-700 mb-4">
-                            "Tanacat" is a 2D platformer game about a cat named Nekoboshi who wants to go to the moon.
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <h4 class="text-2xl font-bold text-blue-900 mt-12 mb-6">🌐 Web Development & UI/UX Projects</h4>
-
-            <div class="grid md:grid-cols-2 gap-8">
-
-                <a href="cirt.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScCirt/Menu.png" alt="Screenshot CIRT PENS" class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">CIRT PENS Website</h5>
-                        <p class="text-sm text-gray-500 mb-3">Cyber Insident Response Team Website (ENT)</p>
-                        <p class="text-gray-700 mb-4">
-                            CIRT is a team established by PENS to address cyber attacks. In this website development
-                            project, I am responsible for UI UX,
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-                <a href="mediapens.html"
-                    class="project-card block bg-gray-100 p-0 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                    <img src="ScMediapens/menu.png" alt="Screenshot Media PENS"
-                        class="rounded-t-lg w-full h-40 object-cover">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-blue-900 mb-2">Media PENS</h5>
-                        <p class="text-sm text-gray-500 mb-3">Website Media for Student in PENS ( ENT )</p>
-                        <p class="text-gray-700 mb-4">
-                            Media pens is a website where the works of PENS students are showcased, such as articles,
-                            images, and other works
-                        </p>
-                        <span class="text-yellow-600 font-medium hover:text-yellow-800">Detail →</span>
-                    </div>
-                </a>
-
-            </div>
+    <section id="skills" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Core capabilities</p>
+          <h3 class="mt-3 text-3xl font-bold text-white">Skills and tools</h3>
         </div>
+        <p class="max-w-2xl text-sm leading-7 text-slate-400">
+          A blend of programming, game development, and interface design skills that support both prototype speed and production quality.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-3">
+        <article class="glass rounded-[2rem] p-7 shadow-soft">
+          <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
+            <i class="fas fa-code text-lg"></i>
+          </div>
+          <h4 class="text-xl font-semibold text-white">Programming</h4>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">C</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">C#</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">C++</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">PHP</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Python</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">SQL</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">HTML</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">React JS</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Tailwind CSS</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Bootstrap</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Laravel</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">CodeIgniter</span>
+          </div>
+        </article>
+
+        <article class="glass rounded-[2rem] p-7 shadow-soft">
+          <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-fuchsia-500/10 text-fuchsia-300">
+            <i class="fas fa-gamepad text-lg"></i>
+          </div>
+          <h4 class="text-xl font-semibold text-white">Game development</h4>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Unity</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Roblox Studio</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Gameplay Systems</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Mechanics Design</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Node Canvas</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">DOTween</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Version Control</span>
+          </div>
+        </article>
+
+        <article class="glass rounded-[2rem] p-7 shadow-soft">
+          <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-300">
+            <i class="fas fa-pencil-ruler text-lg"></i>
+          </div>
+          <h4 class="text-xl font-semibold text-white">Design and workflow</h4>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">UI/UX Design</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Figma</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Notion</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Miro</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Trello</span>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Arduino</span>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <footer class="bg-gray-800 text-white text-center p-6 mt-10">
-        <p>&copy; <span id="current-year"></span> Hansdika Nugroho.</p>
-        <script>
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        </script>
-    </footer>
+    <section id="projects" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Selected work</p>
+          <h3 class="mt-3 text-3xl font-bold text-white">Featured projects</h3>
+        </div>
+        <p class="max-w-2xl text-sm leading-7 text-slate-400">
+          Projects across game development, web engineering, and interface design that reflect both technical implementation and product thinking.
+        </p>
+      </div>
 
+      <div class="mb-8 flex items-center gap-3">
+        <span class="rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-200">Game Development</span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <a href="mandala.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScMandala/Mandala.png" alt="Mandala project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">Psychological Horror • IGDX Incubation</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Mandala: The Minds Journey</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A psychological horror project developed with Jasuke Studio for an incubation program by IGDX, where I contributed to development with the team.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="nocthread.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScNocthread/menu.png" alt="Nocthread project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">3D Horror • Compfest 2025</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Nocthread</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A fixed camera horror experience set against a tense emotional backdrop, built to create atmosphere and narrative pressure through perspective and pacing.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="mystic.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScMystic/menu.png" alt="Mystic Brew project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">Potion Simulation • Game Jam Plus 2024</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Mystic Brew</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A potion crafting simulation where players serve adventurers by preparing customized potions, balancing creativity, task flow, and player feedback.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="rockcat.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScRockcat/main-menu.png" alt="Rockcat project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">Story-Based Side Scroller</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Rockcat: Operation Blue Heaven</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A side-scrolling narrative game with waste-sorting mechanics, designed to combine story progression with a clear educational gameplay loop.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="ispeed.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScIspeed/menu.png" alt="Ishowspeed Goes To Jogja project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">2D Platformer • Internal Game Jam 2024</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Ishowspeed: Goes To Jogja</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A game jam collaboration where I supported the development process and helped the team deliver a playable platforming experience.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="tanacat.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScTanacat/menu.png" alt="Tanacat project preview" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">2D Platformer • Internal Game Jam 2025</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Tanacat</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A 2D platformer about Nekoboshi, a cat aiming for the moon, created as a playful concept with clear platforming goals and charm.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mb-8 mt-14 flex items-center gap-3">
+        <span class="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-200">Web Development & UI/UX</span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <a href="cirt.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScCirt/Menu.png" alt="CIRT PENS website preview" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Cybersecurity Web Platform</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">CIRT PENS Website</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A web project for the PENS Cyber Incident Response Team, where I contributed to UI/UX and the development process to support clearer digital communication.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+
+        <a href="mediapens.html" class="project-card group overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+          <div class="overflow-hidden">
+            <img src="ScMediapens/menu.png" alt="Media PENS website preview" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Student Media Platform</p>
+            <h4 class="mt-3 text-xl font-semibold text-white">Media PENS</h4>
+            <p class="mt-3 text-sm leading-7 text-slate-400">A showcase website for PENS student works, including articles, images, and creative outputs, designed to present content in a more accessible and engaging format.</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">View details <i class="fas fa-arrow-right text-xs"></i></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="gradient-ring rounded-[2rem] glass p-8 shadow-glow lg:p-10">
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Contact</p>
+            <h3 class="mt-3 text-3xl font-bold text-white">Let’s build something impactful.</h3>
+            <p class="mt-4 max-w-2xl text-base leading-8 text-slate-300">
+              I am interested in opportunities involving game development, gameplay programming, web development, and collaborative product work.
+            </p>
+          </div>
+          <div class="grid gap-4">
+            <a href="mailto:hansdikanugroho.1@gmail.com" class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-slate-200 transition hover:border-blue-400/30 hover:bg-white/10">
+              <span class="block text-sm text-slate-400">Email</span>
+              <span class="block font-medium text-white">hansdikanugroho.1@gmail.com</span>
+            </a>
+            <a href="https://github.com/hansdikanugroho" target="_blank" class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-slate-200 transition hover:border-blue-400/30 hover:bg-white/10">
+              <span class="block text-sm text-slate-400">GitHub</span>
+              <span class="block font-medium text-white">github.com/hansdikanugroho</span>
+            </a>
+            <a href="https://www.linkedin.com/in/hansdika-nugroho-9b42b9306/" target="_blank" class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-slate-200 transition hover:border-blue-400/30 hover:bg-white/10">
+              <span class="block text-sm text-slate-400">LinkedIn</span>
+              <span class="block font-medium text-white">Hansdika Nugroho</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
+    <p>&copy; <span id="current-year"></span> Hansdika Nugroho</p>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>

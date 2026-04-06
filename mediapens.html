@@ -1,91 +1,286 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Project | Mystic Brew</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail | Mediapens</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        soft: '0 12px 40px rgba(15, 23, 42, 0.12)',
+                        glow: '0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(37,99,235,0.20)'
+                    },
+                    backgroundImage: {
+                        grid: 'radial-gradient(circle at 1px 1px, rgba(148,163,184,0.15) 1px, transparent 0)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #020617;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.68);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-ring {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .gradient-ring::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.75), rgba(168, 85, 247, 0.55), rgba(34, 197, 94, 0.45));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        .gallery-item {
+            transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 20px 50px rgba(2, 6, 23, 0.45);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="font-sans text-slate-200 antialiased selection:bg-blue-500/30 selection:text-white">
 
-    <header class="bg-blue-900 text-white shadow-lg">
-        <div class="container mx-auto p-4">
-            <a href="index.html#projects" class="text-lg hover:text-yellow-400 transition"><i
-                    class="fas fa-arrow-left mr-2"></i> Back</a>
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-slate-950"></div>
+        <div class="absolute inset-0 bg-grid bg-[size:28px_28px] opacity-40"></div>
+        <div class="absolute left-[-10%] top-[-5%] h-[28rem] w-[28rem] rounded-full bg-blue-600/20 blur-3xl"></div>
+        <div class="absolute right-[-10%] top-[10%] h-[24rem] w-[24rem] rounded-full bg-fuchsia-600/10 blur-3xl"></div>
+        <div class="absolute bottom-[-10%] left-[20%] h-[20rem] w-[20rem] rounded-full bg-cyan-500/10 blur-3xl"></div>
+    </div>
+
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+            <a href="index.html#projects" class="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition hover:text-white">
+                <i class="fas fa-arrow-left text-xs"></i>
+                Back to Projects
+            </a>
+
+            <a href="index.html" class="text-lg font-semibold tracking-wide text-white">
+                Hansdika<span class="text-blue-400">.</span>
+            </a>
         </div>
     </header>
 
-    <section class="py-12">
-        <div class="container mx-auto px-6 max-w-5xl bg-white p-8 rounded-lg shadow-xl">
+    <main>
+        <section class="mx-auto max-w-7xl px-6 pb-14 pt-16 lg:px-8 lg:pb-20 lg:pt-20">
+            <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
 
-            <h1 class="text-4xl font-extrabold text-blue-900 mb-4">Mediapens</h1>
-            <p class="text-xl text-gray-600 mb-6">Website Media | Developed 4 Months </p>
-
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Web Display</h3>
-            <div class="flex space-x-4 overflow-x-auto p-4 bg-gray-50 rounded-lg mb-8 shadow-inner"
-                style="scroll-snap-type: x mandatory;">
-
-                <img src="ScMediapens/1.png" Screenshot Rockcat: Gameplay"
-                    class="w-80 h-auto rounded-lg flex-shrink-0 object-cover shadow-md"
-                    style="scroll-snap-align: start;">
-                <img src="ScMediapens/2.png" alt="Screenshot Rockcat: Gameplay"
-                    class="w-80 h-auto rounded-lg flex-shrink-0 object-cover shadow-md"
-                    style="scroll-snap-align: start;">
-                <img src="ScMediapens/3.png" alt="Screenshot Rockcat: UI Tutorial"
-                    class="w-80 h-auto rounded-lg flex-shrink-0 object-cover shadow-md"
-                    style="scroll-snap-align: start;">
-
-            </div>
-            <div class="grid md:grid-cols-2 gap-6 mb-8 border-b pb-6">
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">My responsibility</h3>
-                    <p class="text-lg text-gray-700">
-                        UI / UX , responsible for creating a design like:
+                    <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200">
+                        <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+                        Website Media Platform • 4 Month Development
+                    </span>
+
+                    <h1 class="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+                        Mediapens
+                    </h1>
+
+                    <p class="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+                        A media platform designed to showcase PENS student works, including articles, visual content, and digital publications.
+                        In this project, I contributed on the UI and UX side by defining features, building the interface direction, and shaping a more dynamic content experience.
                     </p>
-                    <ul class="list-disc list-inside ml-4 mt-2 text-gray-700">
-                        <li>Home Menu</li>
-                        <li>Defining the features</li>
-                        <li>Make mock up for the website</li>
-                        <li>Make prototyping mock up</li>
-                    </ul>
+
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="https://media.ent.pens.ac.id/" target="_blank"
+                            class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02] hover:bg-slate-100">
+                            <i class="fas fa-globe mr-2"></i>Visit Website
+                        </a>
+                        <a href="#gallery"
+                            class="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10">
+                            View Screenshots
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Technology used </h3>
-                    <ul class="list-none space-y-2 text-lg text-gray-700">
-                        <li class="flex items-center"><i class="fab fa-laravel mr-2 text-red-800"></i> Laravel
+
+                <div class="gradient-ring rounded-[2rem] glass p-6 shadow-glow">
+                    <div class="rounded-[1.5rem] border border-white/10 bg-slate-900/90 p-6">
+                        <h2 class="text-2xl font-bold text-white">Project Overview</h2>
+
+                        <div class="mt-6 grid gap-3 text-sm text-slate-300">
+                            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                                <span class="text-slate-400">Project Type</span>
+                                <span class="font-medium text-white">Media Website</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                                <span class="text-slate-400">Duration</span>
+                                <span class="font-medium text-white">4 Months</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                                <span class="text-slate-400">Role</span>
+                                <span class="font-medium text-white">UI / UX Designer</span>
+                            </div>
+                            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                                <span class="text-slate-400">Stack</span>
+                                <span class="font-medium text-white">Laravel + Vue</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Laravel</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">PHP</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">Vue.js</span>
+                            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="gallery" class="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+            <div class="mb-8">
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Web display</p>
+                <h2 class="mt-3 text-3xl font-bold text-white">Screenshots</h2>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                <div class="gallery-item overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+                    <img src="ScMediapens/1.png" alt="Mediapens Screenshot 1" class="h-72 w-full object-cover">
+                </div>
+
+                <div class="gallery-item overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+                    <img src="ScMediapens/2.png" alt="Mediapens Screenshot 2" class="h-72 w-full object-cover">
+                </div>
+
+                <div class="gallery-item overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70">
+                    <img src="ScMediapens/3.png" alt="Mediapens Screenshot 3" class="h-72 w-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+            <div class="grid gap-6 lg:grid-cols-2">
+
+                <article class="glass rounded-[2rem] p-8 shadow-soft">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">My responsibility</p>
+                    <h3 class="mt-3 text-2xl font-bold text-white">What I handled in this project</h3>
+                    <p class="mt-4 text-base leading-8 text-slate-300">
+                        My contribution focused on UI and UX design, where I helped define the structure of the platform and how users would interact with its content.
+                    </p>
+
+                    <ul class="mt-5 space-y-3 text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle mt-1 text-emerald-400"></i>
+                            <span>Designed the home page layout and core interface structure.</span>
                         </li>
-                        <li class="flex items-center"><i class="fab fa-php mr-2 text-blue-500"></i> PHP </li>
-                        <li class="flex items-center"><i class="fab fa-vuejs mr-2 text-cyan-500"></i> Vuejs </li>
-                        <li class="flex items-center"><i class="fab fa-github mr-2 text-black-600"></i>Github</li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle mt-1 text-emerald-400"></i>
+                            <span>Defined key platform features based on content needs.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle mt-1 text-emerald-400"></i>
+                            <span>Created website mockups to establish the visual direction.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle mt-1 text-emerald-400"></i>
+                            <span>Built prototype flows to validate usability and interaction ideas.</span>
+                        </li>
                     </ul>
+                </article>
+
+                <article class="glass rounded-[2rem] p-8 shadow-soft">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Technology used</p>
+                    <h3 class="mt-3 text-2xl font-bold text-white">Tools and stack</h3>
+
+                    <ul class="mt-5 space-y-4 text-base text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-laravel text-lg text-red-400"></i>
+                            <span>Laravel</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-php text-lg text-blue-400"></i>
+                            <span>PHP</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-vuejs text-lg text-emerald-400"></i>
+                            <span>Vue.js</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-github text-lg text-slate-200"></i>
+                            <span>GitHub</span>
+                        </li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
+            <div class="gradient-ring rounded-[2rem] glass p-8 shadow-glow lg:p-10">
+                <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">Description</p>
+                        <h3 class="mt-3 text-3xl font-bold text-white">Project context</h3>
+                        <p class="mt-4 text-base leading-8 text-slate-300">
+                            Mediapens is a platform created to showcase works produced by PENS students, including articles, images, and magazine style digital publications.
+                            The goal of the project was to provide a more organized and attractive space for student content to be presented online.
+                        </p>
+                        <p class="mt-4 text-base leading-8 text-slate-300">
+                            In this project, I worked as a UI and UX designer. It was my second experience in this role, and I felt much more confident in shaping the interface system.
+                            I explored how the platform could feel more dynamic by designing a structure that supports news content, image based works, and digital magazine archives in one unified experience.
+                        </p>
+                    </div>
+
+                    <div class="grid gap-4">
+                        <a href="https://media.ent.pens.ac.id/" target="_blank"
+                            class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-slate-200 transition hover:border-emerald-400/30 hover:bg-white/10">
+                            <span class="block text-sm text-slate-400">Live Website</span>
+                            <span class="block font-medium text-white">Open Mediapens</span>
+                        </a>
+
+                        <a href="index.html#projects"
+                            class="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-slate-200 transition hover:border-emerald-400/30 hover:bg-white/10">
+                            <span class="block text-sm text-slate-400">Portfolio</span>
+                            <span class="block font-medium text-white">Back to project list</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">Description</h3>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                Media pens is a website where the works of PENS students are showcased, such as articles, images, and
-                other works. In this project, it is my second time being a UI/UX designer, and I believe I have
-                developed far more than I did the first time. I feel much freer to design this website and have started
-                thinking about how this website can become more dynamic with various features, where I created a design
-                system to accommodate news systems, a place for image works, and also e-books of magazines from PENS
-                itself.
-            </p>
-            <div class="mt-8">
-                <a href="https://media.ent.pens.ac.id/" target="_blank"
-                    class="inline-block px-6 py-3 bg-yellow-400 text-blue-900 font-semibold rounded-lg hover:bg-yellow-500 transition shadow-md mr-4">
-                    <i class="fas fa-globe mr-2"></i> Link Website
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-white text-center p-4 mt-10">
-        <p>&copy; 2025 Hansdika Nugroho</p>
+    <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
+        <p>&copy; 2026 Hansdika Nugroho</p>
     </footer>
+
 </body>
 
 </html>
